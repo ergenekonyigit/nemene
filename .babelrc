@@ -1,18 +1,7 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions", "safari >= 7"]
-        },
-        "modules": false
-      }
-    ]
-  ],
+  "presets": ["env"],
   "plugins": [
-    "external-helpers",
+    "transform-runtime",
     "transform-object-rest-spread",
-    "transform-exponentiation-operator"
-  ]
+    "transform-exponentiation-operator"]
 }
