@@ -15,11 +15,13 @@ export default function Lilliefors({
   const frequencyX = [...sortedFrequencyMap.values()];
   const Sx = [];
   const cumulativeFrequency = [];
+
   frequencyX.reduce((prev, curr, i) => (cumulativeFrequency[i] = prev + curr), 0);
   cumulativeFrequency.reduce((prev, curr, i) => (Sx[i] = curr / c), 0);
   let Xf = [];
   let XSubMeanX = [];
   let XSubMeanXFrequencyX = [];
+
   if (typeof mean === 'undefined' && typeof standardDeviation === 'undefined') {
     Xf = Array.from({ length: X.length }, (_, i) => X[i] * frequencyX[i]);
     mean = sum(Xf) / c;
