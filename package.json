@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/ergenekonyigit/nemene#readme",
   "dependencies": {
-    "ramda": "^0.25.0"
+    "simple-statistics": "^5.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -1,49 +1,42 @@
-import { sum } from 'ramda';
+import { sum } from 'simple-statistics';
 import { frequency, reduceDigit } from '../util';
 
-export default function Lilliefors(
+export default function Lilliefors({
   observed,
   mean = undefined,
   standardDeviation = undefined,
   alpha = 0.05,
   digit = 4
-) {
+}) {
   const c = observed.length;
   const frequencyMap = frequency(observed);
   const sortedFrequencyMap = new Map([...frequencyMap.entries()].sort());
   const X = [...sortedFrequencyMap.keys()];
   const frequencyX = [...sortedFrequencyMap.values()];
-  const cumulativeFrequency = [],
-    Sx = [];
-
+  const Sx = [];
+  const cumulativeFrequency = [];
   frequencyX.reduce((prev, curr, i) => (cumulativeFrequency[i] = prev + curr), 0);
   cumulativeFrequency.reduce((prev, curr, i) => (Sx[i] = curr / c), 0);
-
-  let Xf = [],
-    XSubMeanX = [],
-    XSubMeanXFrequencyX = [];
-
+  let Xf = [];
+  let XSubMeanX = [];
+  let XSubMeanXFrequencyX = [];
   if (typeof mean === 'undefined' && typeof standardDeviation === 'undefined') {
     Xf = Array.from({ length: X.length }, (_, i) => X[i] * frequencyX[i]);
     mean = sum(Xf) / c;
     XSubMeanX = Array.from({ length: X.length }, (_, i) => X[i] - mean);
-    XSubMeanXFrequencyX = Array.from(
-      { length: X.length },
-      (_, i) => XSubMeanX[i] ** 2 * frequencyX[i]
-    );
+    XSubMeanXFrequencyX = Array.from({ length: X.length }, (_, i) => XSubMeanX[i] ** 2 * frequencyX[i]);
     standardDeviation = sum(XSubMeanXFrequencyX) / (c - 1);
   }
-
   const variant = Math.sqrt(standardDeviation);
   const Z = Array.from({ length: X.length }, (_, i) => (X[i] - mean) / variant);
 
   return {
-    c: c,
-    observed: observed,
-    sortedFrequencyMap: sortedFrequencyMap,
-    X: X,
-    frequency: frequencyX,
-    cumulativeFrequency: cumulativeFrequency,
+    c,
+    observed,
+    sortedFrequencyMap,
+    X,
+    frequencyX,
+    cumulativeFrequency,
     Sx: reduceDigit(Sx, digit),
     Xf: reduceDigit(Xf, digit),
     XSubMeanX: reduceDigit(XSubMeanX, digit),
