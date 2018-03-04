@@ -6,24 +6,17 @@ export default function LayardChiSquare({ observed, alpha = 0.05, digit = 4, way
   const df = c - 1;
   const flatObserved = observed.flatten();
   const n = flatObserved.length;
-  const ni = Array.from({ length: c }, (_, i) => observed[i].length);
-  const meanObserved = Array.from({ length: c }, (_, i) => mean(observed[i]));
-  const Z = Array.from({ length: c }, (_, i) => {
-    return Array.from({ length: ni[i] }, (_, j) => observed[i][j] - meanObserved[i]);
-  });
-  const SSW = Array.from({ length: c }, (_, i) => {
-    return sum(Array.from({ length: ni[i] }, (_, j) => Z[i][j] ** 2));
-  });
-  const SSSW = Array.from({ length: c }, (_, i) => {
-    return sum(Array.from({ length: ni[i] }, (_, j) => Z[i][j] ** 4));
-  });
+  const ni = observed.map(v => v.length);
+  const meanObserved = observed.map(v => mean(v));
+  const Z = observed.map((v, i) => v.map(val => val - meanObserved[i]));
+  const SSW = Z.map((v, i) => sum(v.map(val => val ** 2)));
+  const SSSW = Z.map((v, i) => sum(v.map(val => val ** 4)));
   const gamma = ((n * sum(SSSW)) / (sum(SSW) ** 2)) - 3;
   const T = 2 + (1 - (c / n)) * gamma;
-  const sSqr = Array.from({ length: c }, (_, i) => SSW[i] / c);
-  const logsSqr = Array.from({ length: c }, (_, i) => Math.log10(SSW[i] / c));
-  const calc1 = sum(Array.from({ length: c }, (_, i) => ((ni[i] - 1) * logsSqr[i]))) /
-		sum(Array.from({ length: c }, (_, i) => ni[i] - 1));
-  const calc2 = Array.from({ length: c }, (_, i) => ((ni[i] - 1) * ((logsSqr[i] - calc1) ** 2)));
+  const sSqr = SSW.map(v => v / c);
+  const logsSqr = SSW.map(v => Math.log10(v / c));
+  const calc1 = sum(ni.map((v, i) => (v - 1) * logsSqr[i])) / sum(ni.map(v => v - 1));
+  const calc2 = ni.map((v, i) => (v - 1) * ((logsSqr[i] - calc1) ** 2));
   const L = sum(calc2) / T;
   const chiSqrTable = (df, alpha) => chiSquaredDistributionTable[df][alpha];
 

@@ -8,7 +8,7 @@ export default function ChiSquareGoodnessOfFit({ observed, alpha = 0.05, digit =
   const avg = mean(observed);
   const sumObserved = sum(observed);
   const expected = Array.from({ length: c }, () => sumObserved * pj);
-  const chiSqrCalc = sum(Array.from({ length: c }, (_, i) => (observed[i] - expected[i]) ** 2 / expected[i]));
+  const chiSqrCalc = sum(expected.map((v, i) => (observed[i] - v) ** 2 / v));
   const chiSqrTable = (df, alpha) => chiSquaredDistributionTable[df][alpha];
   const pValue = 0;
   let H0 = null;

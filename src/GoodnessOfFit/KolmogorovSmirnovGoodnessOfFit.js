@@ -23,14 +23,14 @@ export default function KolmogorovSmirnovGoodnessFit({
   let XSubMeanXFrequencyX = [];
 
   if (typeof mean === 'undefined' && typeof standardDeviation === 'undefined') {
-    Xf = Array.from({ length: X.length }, (_, i) => X[i] * frequencyX[i]);
+    Xf = X.map((v, i) => v * frequencyX[i]);
     mean = sum(Xf) / c;
-    XSubMeanX = Array.from({ length: X.length }, (_, i) => X[i] - mean);
-    XSubMeanXFrequencyX = Array.from({ length: X.length }, (_, i) => XSubMeanX[i] ** 2 * frequencyX[i]);
+    XSubMeanX = X.map(v => v - mean);
+    XSubMeanXFrequencyX = XSubMeanX.map((v, i) => (v ** 2) * frequencyX[i]);
     standardDeviation = sum(XSubMeanXFrequencyX) / (c - 1);
   }
-  const variant = Math.sqrt(standardDeviation);
-  const Z = Array.from({ length: X.length }, (_, i) => (X[i] - mean) / variant);
+  const variance = Math.sqrt(standardDeviation);
+  const Z = X.map(v => (v - mean) / variance);
 
   return {
     c,
@@ -45,7 +45,7 @@ export default function KolmogorovSmirnovGoodnessFit({
     XSubMeanXFrequencyX: reduceDigit(XSubMeanXFrequencyX, digit),
     mean: reduceDigit(mean, digit),
     standardDeviation: reduceDigit(standardDeviation, digit),
-    variant: reduceDigit(variant, digit),
+    variance: reduceDigit(variance, digit),
     Z: reduceDigit(Z, digit)
   };
 }
