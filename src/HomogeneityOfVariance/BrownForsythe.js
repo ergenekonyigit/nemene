@@ -1,9 +1,9 @@
 import { sum, median } from 'simple-statistics';
-import { reduceDigit } from '../util';
+import { reduceDigit, flatten } from '../util';
 
 export default function BrownForsythe({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const c = observed.length;
-  const flatObserved = observed.flatten();
+  const flatObserved = flatten(observed);
   const n = flatObserved.length;
   const ni = observed.map(v => v.length);
   const medianObserved = observed.map(v => median(v));

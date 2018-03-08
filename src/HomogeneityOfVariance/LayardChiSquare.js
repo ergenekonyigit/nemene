@@ -1,10 +1,10 @@
 import { sum, mean, chiSquaredDistributionTable } from 'simple-statistics';
-import { reduceDigit } from '../util';
+import { reduceDigit, flatten } from '../util';
 
 export default function LayardChiSquare({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const c = observed.length;
   const df = c - 1;
-  const flatObserved = observed.flatten();
+  const flatObserved = flatten(observed);
   const n = flatObserved.length;
   const ni = observed.map(v => v.length);
   const meanObserved = observed.map(v => mean(v));

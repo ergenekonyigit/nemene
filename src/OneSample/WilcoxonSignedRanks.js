@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
+import { flatten } from '../util';
 
 export default function WilcoxonSignedRanks({ observed, M0, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const n = observed.length;
@@ -22,7 +23,7 @@ export default function WilcoxonSignedRanks({ observed, M0, alpha = 0.05, digit 
 
     meanIndice[i] = indexes.map(x => mean(indexes));
   });
-  const flatMeanIndice = meanIndice.flatten();
+  const flatMeanIndice = flatten(meanIndice);
 
   indexSortedAbsDi.map((v, i) => v.index = flatMeanIndice[i]);
   const rAbsDi = indexedAbsDi.map(x => x.index);
