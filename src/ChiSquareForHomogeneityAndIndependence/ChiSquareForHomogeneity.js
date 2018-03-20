@@ -1,3 +1,27 @@
-export default function ChiSquareForHomogeneity() {
+/* eslint no-nested-ternary: 0 */
+import { sum } from 'simple-statistics';
 
+export default function ChiSquareForHomogeneity({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
+  const r = observed.length;
+  const c = observed[0].length;
+  const sumI = Array.from({ length: c }, (_, i) => sum(observed.map(v => v[i])));
+  const sumJ = observed.map(v => sum(v));
+  const n = sum(sumI || sumJ);
+  const expected = Array.from({ length: r }, (_, i) => Array.from({ length: c }, (_, j) => {
+    return (sumI[j] * sumJ[i]) / n;
+  }));
+  const chiSqr = expected.map((v, i) => v.map((val, j) => (observed[i][j] - val) ** 2 / val));
+  const chiSqrCalc = sum(chiSqr.map(v => sum(v)));
+  const df = (c - 1) * (r - 1);
+
+  return {
+    r,
+    c,
+    sumI,
+    sumJ,
+    n,
+    expected,
+    chiSqrCalc,
+    df
+  };
 }
