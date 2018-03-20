@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
-import { sortArr, flatten } from './util';
+import { sortArr, flatten } from '../../util';
 
 export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

@@ -1,5 +1,5 @@
 import { median } from 'simple-statistics';
-import { sortArr } from '../util';
+import { sortArr } from '../../util';
 
 export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];

@@ -1,5 +1,5 @@
 import { max } from 'simple-statistics';
-import { sortArr } from './util';
+import { sortArr } from '../../util';
 
 export default function KolmogorovSmirnov({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

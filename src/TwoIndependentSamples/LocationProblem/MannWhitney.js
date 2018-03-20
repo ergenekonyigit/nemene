@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
-import { flatten, sortArr } from '../util';
+import { flatten, sortArr } from '../../util';
 
 export default function MannWhitney({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];

@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 consistent-return: 0*/
 import { sum } from 'simple-statistics';
-import { sortArr, flatten } from './util';
+import { sortArr, flatten } from '../../util';
 
 export default function SiegelTukey({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
