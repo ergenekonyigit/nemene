@@ -14,9 +14,9 @@ export default function WilcoxonSignedRanks({ observed, M0, alpha = 0.05, digit 
   let meanIndice = [];
 
   values.forEach((item, i) => {
-    const indexes = indexSortedAbsDi.map((item, i) => {
-      item['index'] = i;
-      return item;
+    const indexes = indexSortedAbsDi.map((val, j) => {
+      val.index = j;
+      return val;
     })
       .filter(a => a.value === item)
       .map(a => a.index + 1);
