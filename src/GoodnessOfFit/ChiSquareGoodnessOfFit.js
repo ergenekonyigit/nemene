@@ -9,7 +9,7 @@ export default function ChiSquareGoodnessOfFit({ observed, alpha = 0.05, digit =
   const sumObserved = sum(observed);
   const expected = Array.from({ length: c }, () => sumObserved * pj);
   const chiSqrCalc = sum(expected.map((v, i) => (observed[i] - v) ** 2 / v));
-  const chiSqrTable = (df, alpha) => chiSquaredDistributionTable[df][alpha];
+  const chiSqrTable = () => chiSquaredDistributionTable[df][alpha];
   const pValue = 0;
   let H0 = null;
 
@@ -28,7 +28,7 @@ export default function ChiSquareGoodnessOfFit({ observed, alpha = 0.05, digit =
     pj,
     df,
     chiSqrCalc: reduceDigit(chiSqrCalc, digit),
-    chiSqrTable: chiSqrTable(df, alpha),
+    chiSqrTable: chiSqrTable(),
     H0,
     pValue
   };
