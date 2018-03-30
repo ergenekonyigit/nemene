@@ -1,6 +1,6 @@
 /* eslint no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
-import { clone, frequency, head, shift, sortArr, flatten } from './util';
+import { clone, frequency, head, shift, sortArr, flatten } from '../util';
 
 export default function KruskalWallis({ observed, alpha = 0.05, digit = 4 }) {
   const ni = observed.map(v => v.length);
