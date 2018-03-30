@@ -14,11 +14,11 @@ export const flatten = (arr, depth = 1) =>
 export const sortArr = f => arr => [...arr].sort(f);
 
 export const factorial = n =>
-  n < 0
-    ? (() => {
-        throw new TypeError('Negative numbers are not allowed!');
-      })()
-    : n <= 1 ? 1 : n * factorial(n - 1);
+  n < 0 ?
+    (() => {
+      throw new TypeError('Negative numbers are not allowed!');
+    })() :
+    n <= 1 ? 1 : n * factorial(n - 1);
 
 export const combinations = (n, r) =>
   factorial(n) / (factorial(r) * factorial(n - r));
