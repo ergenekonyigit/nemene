@@ -21,7 +21,9 @@ export const factorial = n =>
     : n <= 1 ? 1 : n * factorial(n - 1);
 
 export const combinations = (n, r) =>
-  factorial(n) / (factorial(r) * factorial(n - r))
+  factorial(n) / (factorial(r) * factorial(n - r));
+
+export const clone = x => [...x];
 
 export const head = arr => arr[0];
 
