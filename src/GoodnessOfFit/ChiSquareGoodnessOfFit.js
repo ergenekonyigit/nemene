@@ -1,15 +1,14 @@
-import { sum, mean } from 'simple-statistics';
-import { reduceDigit } from '../util';
+import { mean, reduceDigit, sum } from '../util';
 import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function ChiSquareGoodnessOfFit({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const c = observed.length;
   const pj = 1 / c;
   const df = c - 1;
-  const avg = mean(observed);
-  const sumObserved = sum(observed);
+  const avg = mean(...observed);
+  const sumObserved = sum(...observed);
   const expected = Array.from({ length: c }, () => sumObserved * pj);
-  const chiSqrCalc = sum(expected.map((v, i) => (observed[i] - v) ** 2 / v));
+  const chiSqrCalc = sum(...expected.map((v, i) => (observed[i] - v) ** 2 / v));
   const pValue = chiSqrCdf(chiSqrCalc, df);
   let H0 = null;
 

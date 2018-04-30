@@ -1,5 +1,4 @@
-import { sum, mean } from 'simple-statistics';
-import { flatten, sortArr } from '../../util';
+import { flatten, mean, sortArr, sum } from '../../util';
 
 export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
@@ -21,7 +20,7 @@ export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way
       .filter(v => v.value === item)
       .map(v => v.index + 1);
 
-    meanIndice[i] = indexes.map(_ => mean(indexes));
+    meanIndice[i] = indexes.map(_ => mean(...indexes));
   });
   const flatMeanIndice = meanIndice.flatten();
 
@@ -32,7 +31,7 @@ export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way
   const ri = rX;
   const riMinus = ri.map(v => v - ((n + 1) / 2));
   const riMinusSqr = riMinus.map(v => v ** 2);
-  const M = sum(riMinusSqr);
+  const M = sum(...riMinusSqr);
 
   return {
     x,

@@ -1,5 +1,4 @@
-import { sum, max } from 'simple-statistics';
-import { frequency, reduceDigit } from '../util';
+import { frequency, max, reduceDigit, sum } from '../util';
 import { normalCdf } from '../cdf/normal';
 
 export default function KolmogorovSmirnovGoodnessFit({
@@ -25,10 +24,10 @@ export default function KolmogorovSmirnovGoodnessFit({
 
   if (typeof mean === 'undefined' && typeof standardDeviation === 'undefined') {
     Xf = X.map((v, i) => v * frequencyX[i]);
-    mean = sum(Xf) / c;
+    mean = sum(...Xf) / c;
     XSubMeanX = X.map(v => v - mean);
     XSubMeanXFrequencyX = XSubMeanX.map((v, i) => (v ** 2) * frequencyX[i]);
-    standardDeviation = sum(XSubMeanXFrequencyX) / (c - 1);
+    standardDeviation = sum(...XSubMeanXFrequencyX) / (c - 1);
   }
   const variance = Math.sqrt(standardDeviation);
   const Z = X.map(v => (v - mean) / variance);

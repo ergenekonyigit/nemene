@@ -1,5 +1,4 @@
-import { sum, mean } from 'simple-statistics';
-import { flatten, sortArr } from '../../util';
+import { flatten, mean, sortArr, sum } from '../../util';
 
 export default function MannWhitney({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];
@@ -21,7 +20,7 @@ export default function MannWhitney({ observed, alpha = 0.05, digit = 4 }) {
       .filter(v => v.value === item)
       .map(v => v.index + 1);
 
-    meanIndice[i] = indexes.map(_ => mean(indexes));
+    meanIndice[i] = indexes.map(_ => mean(...indexes));
   });
   const flatMeanIndice = meanIndice.flatten();
 
@@ -29,7 +28,7 @@ export default function MannWhitney({ observed, alpha = 0.05, digit = 4 }) {
   const rObs = indexedObs.map(v => v.index);
   const rX = Array.from({ length: n1 }, (_, i) => rObs[i]);
   const rY = Array.from({ length: n2 }, (_, i) => rObs[n1 + i]);
-  const S = sum(rX);
+  const S = sum(...rX);
   const T = S - ((n1 * (n1 + 1)) / 2);
 
   return {

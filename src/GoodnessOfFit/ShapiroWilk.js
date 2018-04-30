@@ -1,5 +1,4 @@
-import { sum } from 'simple-statistics';
-import { frequency, reduceDigit } from '../util';
+import { frequency, reduceDigit, sum } from '../util';
 
 export default function ShapiroWilk({
   observed,
@@ -24,10 +23,10 @@ export default function ShapiroWilk({
 
   if (typeof mean === 'undefined' && typeof standardDeviation === 'undefined') {
     Xf = X.map((v, i) => v * frequencyX[i]);
-    mean = sum(Xf) / c;
+    mean = sum(...Xf) / c;
     XSubMeanX = X.map(v => v - mean);
     XSubMeanXFrequencyX = XSubMeanX.map((v, i) => (v ** 2) * frequencyX[i]);
-    standardDeviation = sum(XSubMeanXFrequencyX) / (c - 1);
+    standardDeviation = sum(...XSubMeanXFrequencyX) / (c - 1);
   }
   const variance = Math.sqrt(standardDeviation);
   const Z = X.map(v => (v - mean) / variance);

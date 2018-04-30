@@ -1,9 +1,8 @@
-import { sum, mean } from 'simple-statistics';
-import { clone, flatten, frequency, head, shift, sortArr } from '../util';
+import { clone, flatten, frequency, head, mean, shift, sortArr, sum } from '../util';
 
 export default function KruskalWallis({ observed, alpha = 0.05, digit = 4 }) {
   const ni = observed.map(v => v.length);
-  const n = sum(ni);
+  const n = sum(...ni);
   const flattenObserved = flatten(observed);
   const indexedObs = flattenObserved.map((v, i) => ({ value: v, index: i }));
   const indexSortedObs = sortArr((_x, _y) => _x.value > _y.value ? 1 : _x.value === _y.value ? 0 : -1)([...indexedObs]);
@@ -18,7 +17,7 @@ export default function KruskalWallis({ observed, alpha = 0.05, digit = 4 }) {
       .filter(v => v.value === item)
       .map(v => v.index + 1);
 
-    meanIndice[i] = indexes.map(_ => mean(indexes));
+    meanIndice[i] = indexes.map(_ => mean(...indexes));
   });
   const flatMeanIndice = flatten(meanIndice);
 
@@ -30,12 +29,12 @@ export default function KruskalWallis({ observed, alpha = 0.05, digit = 4 }) {
     rr = shift(rr);
     return val;
   }));
-  const Rij = rObs.map(v => sum(v));
-  const H = (12 / (n * (n + 1))) * sum(Rij.map((v, i) => (v ** 2) / ni[i])) - (3 * (n + 1));
+  const Rij = rObs.map(v => sum(...v));
+  const H = (12 / (n * (n + 1))) * sum(...Rij.map((v, i) => (v ** 2) / ni[i])) - (3 * (n + 1));
   const frequencyRank = frequency(flatMeanIndice);
   const frequencyArr = [...frequencyRank.values()];
   const Ti = frequencyArr.map(v => (v - 1) * v * (v + 1));
-  const HStar = H / (1 - (sum(Ti) / ((n ** 3) - n)));
+  const HStar = H / (1 - (sum(...Ti) / ((n ** 3) - n)));
 
   return {
     ni,

@@ -1,6 +1,6 @@
 {
   "name": "nemene",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "A practical nonparametric statistical tests library for JavaScript",
   "main": "lib/nemene.js",
   "scripts": {
@@ -26,9 +26,6 @@
     "url": "https://github.com/ergenekonyigit/nemene/issues"
   },
   "homepage": "https://github.com/ergenekonyigit/nemene#readme",
-  "dependencies": {
-    "simple-statistics": "^5.2.1"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

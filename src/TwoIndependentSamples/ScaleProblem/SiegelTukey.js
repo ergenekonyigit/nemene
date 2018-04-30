@@ -1,6 +1,5 @@
 /* eslint consistent-return: 0*/
-import { sum } from 'simple-statistics';
-import { flatten, sortArr } from '../../util';
+import { flatten, sortArr, sum } from '../../util';
 
 export default function SiegelTukey({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
@@ -23,7 +22,7 @@ export default function SiegelTukey({ observed, alpha = 0.05, digit = 4, way = '
     if (v % 2 === 0 && v > (n / 2) && v <= n) return 2 * (n - v) + 2;
     if (v % 2 !== 0 && v > (n / 2) && v < n) return 2 * (n - v) + 1;
   });
-  const ST = sum(ai.map((v, i) => v * delta[i]));
+  const ST = sum(...ai.map((v, i) => v * delta[i]));
 
   return {
     x,

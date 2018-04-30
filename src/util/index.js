@@ -29,3 +29,17 @@ export const head = arr => arr[0];
 
 export const shift = x => x.slice(1);
 
+export const sum = (...arr) => [...arr].reduce((acc, val) => acc + val, 0);
+
+export const min = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n);
+
+export const max = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
+
+export const mean = (...nums) => [...nums].reduce((acc, val) => acc + val, 0) / nums.length;
+
+export const median = arr => {
+  const mid = Math.floor(arr.length / 2),
+    nums = [...arr].sort((a, b) => a - b);
+
+  return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+};

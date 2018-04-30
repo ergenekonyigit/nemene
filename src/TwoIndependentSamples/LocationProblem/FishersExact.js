@@ -1,11 +1,10 @@
-import { sum } from 'simple-statistics';
-import { combinations } from '../../util';
+import { combinations, sum } from '../../util';
 
 export default function FishersExact({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const a = observed[0][0];
   const b = observed[1][0];
-  const n1 = sum(observed[0]);
-  const n2 = sum(observed[1]);
+  const n1 = sum(...observed[0]);
+  const n2 = sum(...observed[1]);
   const n = n1 + n2;
   const w = way === 'one-way' ? 1 : 2;
   const Pb = Array.from({ length: (n2 + 1) }, (_, i) => {

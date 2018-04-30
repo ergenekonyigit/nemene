@@ -1,5 +1,4 @@
-import { median } from 'simple-statistics';
-import { sortArr } from '../../util';
+import { median, sortArr } from '../../util';
 import { zScore } from '../../cdf/z';
 
 export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {

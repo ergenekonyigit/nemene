@@ -1,5 +1,4 @@
-import { sum, mean } from 'simple-statistics';
-import { flatten, sortArr } from '../util';
+import { flatten, mean, sortArr, sum } from '../util';
 
 export default function SpearmanRankCorrelation({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];
@@ -19,7 +18,7 @@ export default function SpearmanRankCorrelation({ observed, alpha = 0.05, digit 
       .filter(_ => _.value === item)
       .map(_ => _.index + 1);
 
-    meanIndice[i][j] = indexes.map(x => mean(indexes));
+    meanIndice[i][j] = indexes.map(_ => mean(...indexes));
   }));
   const flatMeanIndice = meanIndice.map(v => flatten(v));
 
@@ -29,7 +28,7 @@ export default function SpearmanRankCorrelation({ observed, alpha = 0.05, digit 
   const rY = rObs[1];
   const di = rX.map((v, i) => v - rY[i]);
   const diSqr = di.map(v => v ** 2);
-  const sumDiSqr = sum(diSqr);
+  const sumDiSqr = sum(...diSqr);
   const rs = 1 - ((6 * sumDiSqr) / (n * ((n ** 2) - 1)));
 
   return {
