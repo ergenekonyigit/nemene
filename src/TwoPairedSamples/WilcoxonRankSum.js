@@ -1,6 +1,6 @@
 import { mean, sortArr, sum } from '../util';
 
-export default function WilcoxonRanksum(...{ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
+export default function WilcoxonRanksum({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
   const y = observed[1];
   const Di = x.map((v, i) => v - y[i]);
