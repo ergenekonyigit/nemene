@@ -1,4 +1,3 @@
-/* eslint no-nested-ternary: 0 */
 import { sum } from 'simple-statistics';
 import { combinations } from '../util';
 

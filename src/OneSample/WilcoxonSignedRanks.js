@@ -1,6 +1,7 @@
 /* eslint no-unused-vars: 0 no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
 import { flatten } from '../util';
+import { wilcoxonCdf } from '../cdf/wilcoxon';
 
 export default function WilcoxonSignedRanks({ observed, M0, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const n = observed.length;

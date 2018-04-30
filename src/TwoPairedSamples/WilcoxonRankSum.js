@@ -1,4 +1,3 @@
-/* eslint no-nested-ternary: 0 no-return-assign: 0 */
 import { sum, mean } from 'simple-statistics';
 import { sortArr } from '../util';
 
@@ -14,21 +13,21 @@ export default function WilcoxonRankSum({ observed, alpha = 0.05, digit = 4, way
   const meanIndice = [];
 
   values.forEach((item, i) => {
-    const indexes = indexSortedAbsDi.map((val, j) => {
-      val.index = j;
-      return val;
+    const indexes = indexSortedAbsDi.map((itm, j) => {
+      itm.index = j;
+      return itm;
     })
-      .filter(a => a.value === item)
-      .map(a => a.index + 1);
+      .filter(v => v.value === item)
+      .map(v => v.index + 1);
 
-    meanIndice[i] = indexes.map(x => mean(indexes));
+    meanIndice[i] = indexes.map(_ => mean(indexes));
   });
   const flatMeanIndice = meanIndice.flatten();
 
-  indexSortedAbsDi.map((v, i) => v.index = flatMeanIndice[i]);
-  const rAbsDi = indexedAbsDi.map(x => x.index);
+  indexSortedAbsDi.map((v, i) => (v.index = flatMeanIndice[i]));
+  const rAbsDi = indexedAbsDi.map(v => v.index);
   const n = rAbsDi.length;
-  const TPlus = sum(rAbsDi.map((x, i) => x * delta[i]));
+  const TPlus = sum(rAbsDi.map((v, i) => v * delta[i]));
 
   return {
     n,

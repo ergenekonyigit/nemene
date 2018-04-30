@@ -1,5 +1,6 @@
 import { sum, median } from 'simple-statistics';
 import { reduceDigit, flatten } from '../util';
+import { fCdf } from '../cdf/f';
 
 export default function BrownForsythe({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const c = observed.length;
@@ -16,7 +17,7 @@ export default function BrownForsythe({ observed, alpha = 0.05, digit = 4, way =
   const MSB = SSB / (c - 1);
   const MSW = SSW / (n - c);
   const fCalc = MSB / MSW;
-  // const fTable = F(k - 1, n - k, alpha);
+  const pValue = 1 - fCdf(fCalc, c - 1, n - c);
 
   return {
     c,
@@ -33,7 +34,7 @@ export default function BrownForsythe({ observed, alpha = 0.05, digit = 4, way =
     SSW: reduceDigit(SSW, digit),
     MSB: reduceDigit(MSB, digit),
     MSW: reduceDigit(MSW, digit),
-    fCalc: reduceDigit(fCalc, digit)
-    // fTable
+    fCalc: reduceDigit(fCalc, digit),
+    pValue
   };
 }

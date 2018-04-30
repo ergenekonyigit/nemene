@@ -1,12 +1,10 @@
-/* eslint no-unused-vars: 0 no-return-assign: 0 */
-import { flatten, sortArr } from '../../util';
+import { sortArr } from '../../util';
 
 export default function WaldWolfowitz({ observed, M0, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
   const xObj = x.map(v => ({ value: v, index: 'X' }));
   const y = observed[1];
   const yObj = y.map(v => ({ value: v, index: 'Y' }));
-  const flattenObserved = flatten(observed);
   const n1 = x.length;
   const n2 = y.length;
   const n = n1 + n2;

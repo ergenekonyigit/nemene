@@ -1,5 +1,6 @@
-import { sum, mean, chiSquaredDistributionTable } from 'simple-statistics';
+import { sum, mean } from 'simple-statistics';
 import { reduceDigit, flatten } from '../util';
+import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function LayardChiSquare({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const c = observed.length;
@@ -18,7 +19,7 @@ export default function LayardChiSquare({ observed, alpha = 0.05, digit = 4, way
   const calc1 = sum(ni.map((v, i) => (v - 1) * logsSqr[i])) / sum(ni.map(v => v - 1));
   const calc2 = ni.map((v, i) => (v - 1) * ((logsSqr[i] - calc1) ** 2));
   const L = sum(calc2) / T;
-  const chiSqrTable = (df, alpha) => chiSquaredDistributionTable[df][alpha];
+  const pValue = 1 - chiSqrCdf(L, df);
 
   return {
     c,
@@ -37,6 +38,6 @@ export default function LayardChiSquare({ observed, alpha = 0.05, digit = 4, way
     calc1: reduceDigit(calc1, digit),
     calc2: reduceDigit(calc2, digit),
     L: reduceDigit(L, digit),
-    chiSqrTable: chiSqrTable(df, alpha)
+    pValue
   };
 }

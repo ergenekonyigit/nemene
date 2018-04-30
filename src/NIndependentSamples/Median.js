@@ -1,5 +1,6 @@
 import { sum, median } from 'simple-statistics';
-import { sortArr, flatten } from '../util';
+import { flatten, sortArr } from '../util';
+// import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function Median({ observed, alpha = 0.05, digit = 4 }) {
   const ni = observed.map(v => v.length);
@@ -17,6 +18,8 @@ export default function Median({ observed, alpha = 0.05, digit = 4 }) {
     Array.from({ length: sumI.length }, (_, j) => sumJ[i] / 2));
   const chiSqr = expected.map((v, i) => v.map((val, j) => (nMedianLength[i][j] - val) ** 2 / val));
   const chiSqrCalc = sum(chiSqr.map(v => sum(v)));
+  // const df = ni.length - 1;
+  // const pValue = 1 - chiSqrCdf(chiSqrCalc, df);
 
   return {
     ni,

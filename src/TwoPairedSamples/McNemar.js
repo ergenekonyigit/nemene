@@ -1,3 +1,5 @@
+import { zScore } from '../cdf/z';
+
 export default function McNemar({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const A = observed[0][0];
   const C = observed[0][1];
@@ -9,6 +11,7 @@ export default function McNemar({ observed, alpha = 0.05, digit = 4, way = 'one-
   const CD = C + D;
   const n = AB + CD;
   const Z = (C - B) / (Math.sqrt(C + B));
+  const pValue = 1 - zScore(Math.abs(Z));
 
   return {
     A,
@@ -20,6 +23,7 @@ export default function McNemar({ observed, alpha = 0.05, digit = 4, way = 'one-
     BD,
     CD,
     n,
-    Z
+    Z,
+    pValue
   };
 }

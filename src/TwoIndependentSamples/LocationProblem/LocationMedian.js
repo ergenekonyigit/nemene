@@ -1,5 +1,6 @@
 import { median } from 'simple-statistics';
 import { sortArr } from '../../util';
+import { zScore } from '../../cdf/z';
 
 export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];
@@ -12,12 +13,12 @@ export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {
   const sortedXY = sortArr((a, b) => a - b)([...x, ...y]);
   const medianXY = median(sortedXY);
 
-  let xMedian = [[], []];
+  const xMedian = [[], []];
 
   x.map((v, i) => v > medianXY ? xMedian[0].push(v) : xMedian[1].push(v));
   const xMedianLength = xMedian.map(v => v.length);
 
-  let yMedian = [[], []];
+  const yMedian = [[], []];
 
   y.map((v, i) => v > medianXY ? yMedian[0].push(v) : yMedian[1].push(v));
   const yMedianLength = yMedian.map(v => v.length);
@@ -26,6 +27,7 @@ export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {
   const P2 = yMedianLength[0] / n2;
   const P = (xMedianLength[0] + yMedianLength[0]) / n;
   const Z = (P1 - P2) / Math.sqrt((P * (1 - P) * ((1 / n1) + (1 / n2))));
+  const pValue = 1 - zScore(Math.abs(Z));
 
   return {
     x,
@@ -44,6 +46,7 @@ export default function LocationMedian({ observed, alpha = 0.05, digit = 4 }) {
     P1,
     P2,
     P,
-    Z
+    Z,
+    pValue
   };
 }
