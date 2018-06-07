@@ -1,4 +1,4 @@
-import { clone, flatten, frequency, head, mean, shift, sortArr, sum } from '../util';
+import { clone, flatten, frequency, head, mean, shift, sortArr, sum } from '../utils';
 
 export default function KruskalWallis({ observed, alpha = 0.05, digit = 4 }) {
   const ni = observed.map(v => v.length);

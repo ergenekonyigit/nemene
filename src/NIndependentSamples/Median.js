@@ -1,4 +1,4 @@
-import { flatten, median, sortArr, sum } from '../util';
+import { flatten, median, sortArr, sum } from '../utils';
 // import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function Median({ observed, alpha = 0.05, digit = 4 }) {

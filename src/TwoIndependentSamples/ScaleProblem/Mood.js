@@ -1,4 +1,4 @@
-import { flatten, mean, sortArr, sum } from '../../util';
+import { flatten, mean, sortArr, sum } from '../../utils';
 
 export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

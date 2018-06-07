@@ -1,4 +1,4 @@
-import { mean, sortArr, sum } from '../util';
+import { mean, sortArr, sum } from '../utils';
 
 export default function WilcoxonRanksum({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

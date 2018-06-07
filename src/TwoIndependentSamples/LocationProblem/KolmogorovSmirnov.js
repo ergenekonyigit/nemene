@@ -1,4 +1,4 @@
-import { max, sortArr } from '../../util';
+import { max, sortArr } from '../../utils';
 
 export default function KolmogorovSmirnov({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

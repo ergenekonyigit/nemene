@@ -1,4 +1,4 @@
-import { sum } from '../util';
+import { sum } from '../utils';
 // import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function ChiSquareForHomogeneity({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {

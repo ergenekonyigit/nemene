@@ -1,4 +1,4 @@
-import { mean } from '../util';
+import { mean } from '../utils';
 
 export default function Runs({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   let n, n1, n2, ind, meanX;

@@ -1,4 +1,4 @@
-import { flatten, mean, sortArr, sum } from '../../util';
+import { flatten, mean, sortArr, sum } from '../../utils';
 
 export default function MannWhitney({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];

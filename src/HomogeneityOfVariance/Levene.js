@@ -1,4 +1,4 @@
-import { flatten, mean, reduceDigit, sum } from '../util';
+import { flatten, mean, reduceDigit, sum } from '../utils';
 import { fCdf } from '../cdf/f';
 
 export default function Levene({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {

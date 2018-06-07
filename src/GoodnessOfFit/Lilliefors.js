@@ -1,4 +1,4 @@
-import { frequency, max, reduceDigit, sum } from '../util';
+import { frequency, max, reduceDigit, sum } from '../utils';
 import { normalCdf } from '../cdf/normal';
 
 export default function Lilliefors({

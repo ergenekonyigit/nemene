@@ -1,4 +1,4 @@
-import { combinations, sum } from '../util';
+import { combinations, sum } from '../utils';
 
 export default function Binomial({ observed, piZero, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const n = observed.length;

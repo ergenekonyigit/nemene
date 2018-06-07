@@ -1,4 +1,4 @@
-import { sortArr } from '../util';
+import { sortArr } from '../utils';
 
 export default function Kendall({ observed, alpha = 0.05, digit = 4 }) {
   const x = observed[0];

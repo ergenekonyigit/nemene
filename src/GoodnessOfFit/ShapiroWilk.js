@@ -1,4 +1,4 @@
-import { frequency, reduceDigit, sum } from '../util';
+import { frequency, reduceDigit, sum } from '../utils';
 
 export default function ShapiroWilk({
   observed,

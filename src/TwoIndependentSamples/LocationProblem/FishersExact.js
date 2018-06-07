@@ -1,4 +1,4 @@
-import { combinations, sum } from '../../util';
+import { combinations, sum } from '../../utils';
 
 export default function FishersExact({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const a = observed[0][0];

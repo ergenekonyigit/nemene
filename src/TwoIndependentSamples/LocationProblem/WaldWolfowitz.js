@@ -1,4 +1,4 @@
-import { sortArr } from '../../util';
+import { sortArr } from '../../utils';
 
 export default function WaldWolfowitz({ observed, M0, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

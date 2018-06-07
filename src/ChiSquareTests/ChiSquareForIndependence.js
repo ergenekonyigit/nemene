@@ -1,4 +1,4 @@
-import { min, sum } from '../util';
+import { min, sum } from '../utils';
 // import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function ChiSquareForIndependence({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {

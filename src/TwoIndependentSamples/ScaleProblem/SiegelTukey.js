@@ -1,5 +1,5 @@
 /* eslint consistent-return: 0*/
-import { flatten, sortArr, sum } from '../../util';
+import { flatten, sortArr, sum } from '../../utils';
 
 export default function SiegelTukey({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];

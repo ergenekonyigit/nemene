@@ -1,4 +1,4 @@
-import { flatten, mean, sortArr, sum } from '../util';
+import { flatten, mean, sortArr, sum } from '../utils';
 // import { wilcoxonCdf } from '../cdf/wilcoxon';
 
 export default function WilcoxonSignedRanks({ observed, M0, alpha = 0.05, digit = 4, way = 'one-way' }) {

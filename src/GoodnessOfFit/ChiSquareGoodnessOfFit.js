@@ -1,4 +1,4 @@
-import { mean, reduceDigit, sum } from '../util';
+import { mean, reduceDigit, sum } from '../utils';
 import { chiSqrCdf } from '../cdf/chiSqr';
 
 export default function ChiSquareGoodnessOfFit({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {

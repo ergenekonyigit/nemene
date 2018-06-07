@@ -1,4 +1,4 @@
-import { flatten, median, reduceDigit, sum } from '../util';
+import { flatten, median, reduceDigit, sum } from '../utils';
 import { fCdf } from '../cdf/f';
 
 export default function BrownForsythe({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
