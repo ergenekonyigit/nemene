@@ -1,6 +1,6 @@
 {
   "name": "nemene",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "description": "A practical nonparametric statistical tests library for JavaScript",
   "main": "lib/nemene.js",
   "scripts": {
