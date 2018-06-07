@@ -22,7 +22,7 @@ export default function Mood({ observed, alpha = 0.05, digit = 4, way = 'one-way
 
     meanIndice[i] = indexes.map(_ => mean(...indexes));
   });
-  const flatMeanIndice = meanIndice.flatten();
+  const flatMeanIndice = flatten(meanIndice);
 
   indexSortedObs.map((v, i) => (v.index = flatMeanIndice[i]));
   const rObs = indexedObs.map(v => v.index);

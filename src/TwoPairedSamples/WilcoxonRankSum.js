@@ -1,4 +1,4 @@
-import { mean, sortArr, sum } from '../utils';
+import { flatten, mean, sortArr, sum } from '../utils';
 
 export default function WilcoxonRanksum({ observed, alpha = 0.05, digit = 4, way = 'one-way' }) {
   const x = observed[0];
@@ -22,7 +22,7 @@ export default function WilcoxonRanksum({ observed, alpha = 0.05, digit = 4, way
 
     meanIndice[i] = indexes.map(_ => mean(...indexes));
   });
-  const flatMeanIndice = meanIndice.flatten();
+  const flatMeanIndice = flatten(meanIndice);
 
   indexSortedAbsDi.map((v, i) => (v.index = flatMeanIndice[i]));
   const rAbsDi = indexedAbsDi.map(v => v.index);
